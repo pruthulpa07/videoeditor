@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e3b753de.css",
+    "main.js": "/static/js/main.105a9a9e.js",
+    "static/js/787.41b81764.chunk.js": "/static/js/787.41b81764.chunk.js",
+    "static/media/lion2.gif": "/static/media/lion2.ecc826025ba50bfba256.gif",
+    "static/media/filter_none.png": "/static/media/filter_none.b7a5298b36c99ffb4ca4.png",
+    "static/media/filter_hue.png": "/static/media/filter_hue.d5bf0b4163a91556e215.png",
+    "static/media/filter_inv.png": "/static/media/filter_inv.a70475e0260c3a7b224a.png",
+    "static/media/filter_grey.png": "/static/media/filter_grey.3d9d5f31aa6061492473.png",
+    "static/media/filter_contrast.png": "/static/media/filter_contrast.53a706e5310b912ac95c.png",
+    "static/media/callout5.png": "/static/media/callout5.906cb6deb7a8f1c186a2.png",
+    "static/media/filter_blur.png": "/static/media/filter_blur.fafdb7d2c96a68d728e8.png",
+    "static/media/lion.jpg": "/static/media/lion.0e8e7450ac8ccda6aed1.jpg",
+    "static/media/callout4.png": "/static/media/callout4.a92b898a3d1fcef2e006.png",
+    "static/media/button8.png": "/static/media/button8.555362bb95bb88e9c3d0.png",
+    "static/media/main-fonts.svg?v=20": "/static/media/main-fonts.404be73e1ad40b1da282.svg",
+    "static/media/callout1.png": "/static/media/callout1.84c9bc601ae89a584a08.png",
+    "static/media/callout6.png": "/static/media/callout6.e06da5b2e6cc17ddc6ce.png",
+    "static/media/button6.png": "/static/media/button6.327e83412da2bd5dd1b2.png",
+    "static/media/button4.png": "/static/media/button4.4a46e3c0fb7b0a63850c.png",
+    "static/media/button3.png": "/static/media/button3.033d4ba769e71df9e505.png",
+    "static/media/button2.png": "/static/media/button2.eef71efdb99949b6087d.png",
+    "static/media/button1.png": "/static/media/button1.951a2882defddc84dc4f.png",
+    "static/media/button5.png": "/static/media/button5.2c5b229fd5c9006e6054.png",
+    "static/media/button7.png": "/static/media/button7.bdaaec0d59cbbe6c795a.png",
+    "static/media/main-fonts.eot?v=20": "/static/media/main-fonts.b8dc46886b7e216a02be.eot",
+    "static/media/main-fonts.ttf?v=20": "/static/media/main-fonts.4d0a76596dbbbfbfe5ee.ttf",
+    "static/media/main-fonts.woff?v=20": "/static/media/main-fonts.dbf9ed7d53cfa8f73da7.woff",
+    "index.html": "/index.html",
+    "main.e3b753de.css.map": "/static/css/main.e3b753de.css.map",
+    "main.105a9a9e.js.map": "/static/js/main.105a9a9e.js.map",
+    "787.41b81764.chunk.js.map": "/static/js/787.41b81764.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e3b753de.css",
+    "static/js/main.105a9a9e.js"
+  ]
+}
