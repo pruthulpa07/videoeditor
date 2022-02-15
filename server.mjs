@@ -25,6 +25,7 @@ app.use(function(req, res, next) {
     res.setHeader("Cross-Origin-Opener-Policy", "same-origin")
     res.setHeader("Cross-Origin-Embedder-Policy","require-corp")
     res.setHeader("Accept-Ranges", "bytes")
+    res.setHeader("Access-Control-Allow-Origin", "*")
     next();
 });
 
@@ -121,3 +122,25 @@ app.post('/render',async function(req,res){
   });
 
 app.use(express.static("build"));
+
+app.post('/save', function(req,res){
+    console.log(req)
+    // var buf = Buffer.from(req.fields.file);
+    // fs.writeFile('out.mp4', buf, /* callback will go here */
+    //         function(err) {
+    //         if(err) {
+    //             return console.log(err);
+    //         }
+    //         console.log("The file was saved!");
+    //         }
+    // );
+    // fs.createWriteStream('out.mp4').write(buf)
+    fs.readFile(req.files.file.path, async function(err, data){
+        fs.writeFile("./build/out.mp4", data, function(err) {
+            if(err) {
+                return console.log(err);
+            }
+            console.log("The file was saved!");
+        }); 
+    })
+})
