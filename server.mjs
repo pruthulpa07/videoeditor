@@ -58,6 +58,8 @@ app.post('/render',async function(req,res){
     const uri = req.fields.image_data
     const renderFormat = req.fields.render_format
     const filter = req.fields.filter_data
+    const startAudioTimeSec = req.fields.startAudioTimeSec
+    const stopAudioTimeSec = req.fields.stopAudioTimeSec
     const scale = parseFloat(req.fields.scale)
     // const scale = 1.539
     var videoElement = {
@@ -98,12 +100,12 @@ app.post('/render',async function(req,res){
                 if(filter != 'none' && audio){
                 await ffmpeg.run('-i', 'test.mp4','-ss','00:00:00','-to',toTime,'-vf', filter,'tmp.mp4');
                 await ffmpeg.run('-i', 'tmp.mp4', '-i', `${uri}`,'-i','audio.mp3', '-ss',fromTime,'-to',toTime,
-                '-filter_complex', `[1:v]scale=${videoElement.videoWidth}:${videoElement.videoHeight} [ovrl],[0:v][ovrl] overlay=0:0`
-                ,'-map', '0:v', '-map', '2:a', 'out.'+renderFormat);
+                '-filter_complex', `[1:v]scale=${videoElement.videoWidth}:${videoElement.videoHeight} [ovrl],[0:v][ovrl] overlay=0:0;[2:a]atrim=start=${parseInt(startAudioTimeSec)}:end=${parseInt(stopAudioTimeSec)},asetpts=PTS-STARTPTS [a0]`
+                ,'-map', '0:v', '-map', '[a0]', 'out.'+renderFormat);
                 }else if(filter == 'none' && audio){
                 await ffmpeg.run('-i', 'test.mp4', '-i', `${uri}`,'-i','audio.mp3', '-ss',fromTime,'-to',toTime,
-                '-filter_complex', `[1:v]scale=${videoElement.videoWidth}:${videoElement.videoHeight} [ovrl],[0:v][ovrl] overlay=0:0`
-                ,'-map', '0:v', '-map', '2:a', 'out.'+renderFormat);
+                '-filter_complex', `[1:v]scale=${videoElement.videoWidth}:${videoElement.videoHeight} [ovrl],[0:v][ovrl] overlay=0:0;[2:a]atrim=start=${parseInt(startAudioTimeSec)}:end=${parseInt(stopAudioTimeSec)},asetpts=PTS-STARTPTS [a0]`
+                ,'-map', '0:v', '-map', '[a0]', 'out.'+renderFormat);
                 }else if(filter != 'none'){
                 await ffmpeg.run('-i', 'test.mp4','-ss','00:00:00','-to',toTime,'-vf', filter,'tmp.mp4');
                 await ffmpeg.run('-i', 'tmp.mp4', '-i', `${uri}`,'-ss',fromTime,'-to',toTime,
@@ -149,12 +151,12 @@ app.post('/render',async function(req,res){
             if(filter != 'none' && audio){
             await ffmpeg.run('-i', 'test.mp4','-ss','00:00:00','-to',toTime,'-vf', filter,'tmp.mp4');
             await ffmpeg.run('-i', 'tmp.mp4', '-i', `${uri}`,'-i','audio.mp3', '-ss',fromTime,'-to',toTime,
-            '-filter_complex', `[1:v]scale=${videoElement.videoWidth}:${videoElement.videoHeight} [ovrl],[0:v][ovrl] overlay=0:0`
-            ,'-map', '0:v', '-map', '2:a', 'out.'+renderFormat);
+            '-filter_complex', `[1:v]scale=${videoElement.videoWidth}:${videoElement.videoHeight} [ovrl],[0:v][ovrl] overlay=0:0;[2:a]atrim=start=${parseInt(startAudioTimeSec)}:end=${parseInt(stopAudioTimeSec)},asetpts=PTS-STARTPTS [a0]`
+            ,'-map', '0:v', '-map', '[a0]', 'out.'+renderFormat);
             }else if(filter == 'none' && audio){
             await ffmpeg.run('-i', 'test.mp4', '-i', `${uri}`,'-i','audio.mp3', '-ss',fromTime,'-to',toTime,
-            '-filter_complex', `[1:v]scale=${videoElement.videoWidth}:${videoElement.videoHeight} [ovrl],[0:v][ovrl] overlay=0:0`
-            ,'-map', '0:v', '-map', '2:a', 'out.'+renderFormat);
+            '-filter_complex', `[1:v]scale=${videoElement.videoWidth}:${videoElement.videoHeight} [ovrl],[0:v][ovrl] overlay=0:0;[2:a]atrim=start=${parseInt(startAudioTimeSec)}:end=${parseInt(stopAudioTimeSec)},asetpts=PTS-STARTPTS [a0]`
+            ,'-map', '0:v', '-map', '[a0]', 'out.'+renderFormat);
             }else if(filter != 'none'){
             await ffmpeg.run('-i', 'test.mp4','-ss','00:00:00','-to',toTime,'-vf', filter,'tmp.mp4');
             await ffmpeg.run('-i', 'tmp.mp4', '-i', `${uri}`,'-ss',fromTime,'-to',toTime,
