@@ -97,7 +97,16 @@ app.post('/render',async function(req,res){
 
 
             try{
-                if(filter != 'none' && audio){
+                if(filter != 'none' && audio && renderFormat == 'gif'){
+                await ffmpeg.run('-i', 'test.mp4','-ss','00:00:00','-to',toTime,'-vf', filter,'tmp.mp4');
+                await ffmpeg.run('-i', 'tmp.mp4', '-i', `${uri}`,'-ss',fromTime,'-to',toTime,
+                '-filter_complex', `[1:v]scale=${videoElement.videoWidth}:${videoElement.videoHeight} [ovrl],[0:v][ovrl] overlay=0:0`
+                , 'out.'+renderFormat);
+                }else if(filter == 'none' && audio && renderFormat == 'gif'){
+                await ffmpeg.run('-i', 'test.mp4', '-i', `${uri}`,'-ss',fromTime,'-to',toTime,
+                '-filter_complex', `[1:v]scale=${videoElement.videoWidth}:${videoElement.videoHeight} [ovrl],[0:v][ovrl] overlay=0:0`
+                , 'out.'+renderFormat);
+                }else if(filter != 'none' && audio){
                 await ffmpeg.run('-i', 'test.mp4','-ss','00:00:00','-to',toTime,'-vf', filter,'tmp.mp4');
                 await ffmpeg.run('-i', 'tmp.mp4', '-i', `${uri}`,'-i','audio.mp3', '-ss',fromTime,'-to',toTime,
                 '-filter_complex', `[1:v]scale=${videoElement.videoWidth}:${videoElement.videoHeight} [ovrl],[0:v][ovrl] overlay=0:0;[2:a]atrim=start=${parseInt(startAudioTimeSec)}:end=${parseInt(stopAudioTimeSec)},asetpts=PTS-STARTPTS [a0]`
